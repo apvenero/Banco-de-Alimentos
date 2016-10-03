@@ -1,0 +1,40 @@
+{% extends "headerAdministrador.html.twig" %}
+
+
+{% block contenido %}
+    {{msj}}
+    <form class="formulario" name="formModificarUsuario" action="index.php?controller=abmUsuarios&amp;action=guardarModificacion&amp;id={{usua[0]['idUsuario']}}" method="post">
+      <fieldset>
+      <legend>Datos del Usuario</legend><br/>
+        <label for="nombreUsuario">Nombre de usuario:</label> <input type="text" name="nombreUsuario" id="nombreUsuario" value="{{usua[0]['usuario']}}" required >
+        <span class="error">{{ errores.nombreUsuario }}</span> <br><br>
+                                    
+        <label for="pass">Contrase&ntilde;a:</label> <input type="text" name="pass" id="pass"  value="{{usua[0]['pass']}}">
+        <span class="error">{{ errores.pass }}</span> <br><br>
+        
+        
+        <label for="rol"> Rol: </label> 
+         <select name="rol" id="rol">
+                <option value="1">Administrador</option>
+                <option value="2">Gestion</option>
+                <option value="3"> Consulta</option>
+            </select> <br> <br>
+        <input type="hidden" name="token" value="{{token}}" >   
+        <input type="submit" value="Guardar Cambios"  >
+        <input type="reset"  value="Cancelar" id="limpiar" onclick="document.location.href= 'index.php?controller=abmUsuarios&amp;action=listarUsuarios'" >
+
+    </fieldset>
+                            
+                            
+</form>
+            
+
+                                
+
+<input type="button" value="Volver" onclick="document.location.href='index.php?controller=abmUsuarios&amp;action=listarUsuarios'">   
+                    
+    {% endblock %}
+                    
+
+
+                

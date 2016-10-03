@@ -1,0 +1,37 @@
+{% extends "headerAdministrador.html.twig" %}
+
+
+{% block contenido %}
+
+
+<p><a class="mas" href='index.php?controller=AdministradorDOController&amp;action=alta'>Nuevo Donante</a></p><br/>
+
+<table class="tabla">         
+      <tr>
+        <th>RAZON SOCIAL</th>
+        <th>APELLIDO</th>
+        <th>NOMBRE</th>
+        <th>TELEFONO</th>
+        <th>MAIL</th>
+        <th>DOMICILIO</th> 
+        <th>OPCIONES</th>  
+      </tr> 
+     {% for don in donantes %}
+        <tr>                   
+          <td> {{ don.razon_social }} </td> 
+          <td> {{ don.apellido_contacto }}  </td> 
+          <td> {{ don.nombre_contacto }}  </td> 
+          <td> {{ don.telefono_contacto }}  </td> 
+          <td> {{ don.mail_contacto }}  </td> 
+          <td> {{ don.domicilio_contacto }}  </td> 
+          <td>
+            <a href="index.php?controller=AdministradorDOController&amp;action=modificar&amp;id={{ don.id }}"><img src="imagen/modificar.png" alt="Modificar"></a>
+            <a href="index.php?controller=AdministradorDOController&amp;action=baja&amp;id={{ don.id }}"><img src="imagen/eliminar.png" alt="Eliminar"></a>  
+
+          </td> 
+        </tr> 
+     {% endfor %}        
+</table>
+
+
+{% endblock %}

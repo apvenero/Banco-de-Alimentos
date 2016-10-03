@@ -1,0 +1,28 @@
+{% extends "headerAdministrador.html.twig" %}
+
+
+{% block contenido %}
+
+
+<p><a class="mas" href='index.php?controller=AdministradorSPController&amp;action=alta'>Nuevo Servicio</a></p><br/>
+
+<table class="tabla">         
+      <tr>
+        <th>DESCRIPCION</th> 
+        <th>OPCIONES</th>  
+      </tr> 
+     {% for ser in servicios %}
+        <tr>                   
+          <td> {{ ser.descripcionServicio }} </td> 
+
+          <td>
+            <a href="index.php?controller=AdministradorSPController&amp;action=modificar&amp;id={{ ser.id }}"><img src="imagen/modificar.png" alt="Modificar"></a>
+            <a href="index.php?controller=AdministradorSPController&amp;action=baja&amp;id={{ ser.id }}"><img src="imagen/eliminar.png" alt="Eliminar"></a>  
+
+          </td> 
+        </tr> 
+     {% endfor %}        
+</table>
+
+
+{% endblock %}

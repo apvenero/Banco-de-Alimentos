@@ -1,0 +1,37 @@
+{% extends "headerAdministrador.html.twig" %}
+
+{% block contenido %}
+ {% if errores %}
+            <div id="errorMessage">
+              {{ errores }}
+            </div>
+      {% endif %}
+  {{msj}}
+    <form class="formulario" name="formAltaUsuario" action="index.php?controller=abmUsuarios&amp;action=guardar" method="post">
+      <fieldset>
+      <legend>Datos del Usuario</legend><br/>
+        <label for="nombreUsuario">Nombre de usuario:</label><input type="text" name="nombreUsuario" id="nombreUsuario" {% if nombreUsu %} value={{nombreUsu}} {% endif %} required>
+        <span class="error">{{ errores.nombreUsuario }}</span> <br> <br>
+
+        <label for="pass">Password:</label><input type="password" name="pass" id="pass" required>
+        <span class="error">{{ errores.pass1 }}</span> <br> <br>
+
+        <label for="rol"> Rol: </label> 
+         <select name="rol" id="rol">
+           <option value="1" {% if rol == "1" %} selected  {% endif %} >Administrador</option>
+           <option value="2" {% if rol == "2" %} selected  {% endif %}>Gestion</option>
+           <option value="3" {% if rol == "3" %}  selected {% endif %}> Consulta</option>
+          </select> <br>
+          <input type="hidden" name="token" value="{{token}}" >
+          <br> <br>
+        <input type="submit" value="Dar de alta"  >
+        <input type="reset"  value="Limpiar" id="limpiar" onclick="document.location.index.php?controller=altausuario" > 
+        
+      </fieldset>  
+    
+                  
+    </form>
+   <input type="button" value="Volver" onclick="document.location.href='index.php?controller=abmUsuarios&amp;action=listarUsuarios'"> 
+        
+          
+{% endblock %}

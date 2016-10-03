@@ -1,0 +1,38 @@
+{% extends "headerAdministrador.html.twig" %}
+
+
+{% block contenido %}
+
+{% if turnos %}
+<p><a class="mas" href='index.php?controller=TurnosEntregaController&amp;action=listar'>Mostrar todos </a></p><br>
+
+
+<form id="form-alta" action="index.php?controller=TurnosEntregaController&amp;action=buscar" method="post">
+    
+      <input type="date" name="fecha" id="fecha" required>
+      <input type="submit" value="Filtrar">
+</form>
+
+<table class="tabla">         
+      <tr>
+        <th>FECHA</th>
+        <th>HORA</th>
+        <th>NUMERO PEDIDO</th>
+        <th>ESTADO PEDIDO</th>
+        <th>OPERACIONES</th>
+      </tr> 
+     {% for t in turnos %}
+        <tr>    
+          <td> {{ t.fecha }} </td> 
+          <td> {{ t.hora }}  </td> 
+          <td> {{ t.numero }}  </td> 
+          <td> {{ t.descripcion }}  </td> 
+          <td><a href="index.php?controller=TurnosEntregaController&amp;action=modificar&amp;id={{t.id}}"><img src="imagen/modificar.png" alt="Modificar"></a></td>
+        </tr> 
+     {% endfor %}        
+</table>
+ {%else %}
+      <h2>NO HAY TURNOS </h2><br>
+  {%endif%}
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "headerAdministrador.html.twig" %}
+
+
+{% block contenido %}
+
+        
+      <form class="formulario" method= "post" action= "index.php?controller=AdministradorSPController&amp;action=guardarAlta">
+    
+      <fieldset>
+        <legend>Datos del Servicio</legend><br/>
+                      
+          <label for="descripcionServicio">Descripcion Servicio:</label>
+          <input type="text" name="descripcionServicio" id="descripcionServicio" required><br/>
+          <span class="error">{{ errores.descripcionServicio }}</span><br/>
+  
+          
+          <br/>
+          
+          <input id="boton" type="submit" value="Guardar" onclick="">
+          
+          <input id="boton" type="button" value="Cancelar" onclick="document.location.href='index.php?controller=AdministradorSPController&amp;action=listar'">  
+
+
+          </fieldset>
+
+      </form>
+          
+
+{% endblock %}

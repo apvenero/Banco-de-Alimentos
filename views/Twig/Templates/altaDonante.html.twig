@@ -1,0 +1,48 @@
+{% extends "headerAdministrador.html.twig" %}
+
+
+{% block contenido %}
+
+        
+      <form class="formulario" method= "post" action="index.php?controller=AdministradorDOController&amp;action=guardarAlta">
+    
+      <fieldset>
+        <legend>Datos del Donante</legend><br>
+                      
+          <label for="razon_social">Razon Social:</label>
+          <input type="text" name="razon_social" id="razon_social" required> <br>
+          <span class="error">{{ errores.razon_social }}</span><br>
+  
+          <label for="apellido_contacto">Apellido:</label> 
+          <input type="text" name="apellido_contacto" id="apellido_contacto" required><br>
+          <span class="error">{{ errores.apellido_contacto }}</span><br>
+
+          <label for="nombre_contacto">Nombre:</label> 
+          <input type="text" name="nombre_contacto" id="nombre_contacto" required><br>
+          <span class="error">{{ errores.nombre_contacto }}</span><br>
+      
+          <label for="domicilio_contacto">Domicilio:</label> 
+          <input type="text" name="domicilio_contacto" id="domicilio_contacto" required><br>
+          <span class="error">{{ errores.domicilio_contacto }}</span><br>
+
+          <label for="telefono_contacto">T&eacute;lefono:</label> 
+          <input type="text" name="telefono_contacto" id="telefono_contacto" required> <br>
+          <span class="error">{{ errores.telefono_contacto }}</span><br>
+
+          <label for="mail_contacto">Mail:</label> 
+          <input type="text" name="mail_contacto" id="mail_contacto" required><br>
+          <span class="error">{{ errores.mail_contacto }}</span><br>
+              
+          <br>
+          
+          <input id="boton" type="submit" value="Guardar" onclick="">
+          
+          <input id="boton" type="button"  value="Cancelar" onclick="window.history.go(-1)">  
+
+
+          </fieldset>
+
+      </form>
+          
+
+{% endblock %}

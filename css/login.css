@@ -1,0 +1,187 @@
+body {
+  width:950px;
+  margin:0 auto;
+  margin-top:30px;
+  background-color:#e0e7da;
+}
+
+.usuarioReg{
+  margin-top: 5%;
+  float: right;
+  margin-right: 2%;
+  font-size: x-large;
+  border:solid;
+  background:#FFA500;
+  width: 270px;
+  height: 100px;
+  font-family: arial;
+  text-align: center;
+
+}
+
+.general{
+  width: 950px;
+  background: #FFF;
+}
+
+h1{
+  font-size: x-large;
+  font-family: arial ;
+  color: #000000;
+  margin-left: 20%;
+}
+
+.boxlogin
+{
+  
+  float: right;
+  border-width: 3px;
+  margin-right: 10px;
+  margin-top: 10px;
+  color: #FFF;
+  font-family: arial;
+  font-size: medium;
+  border-style: solid;
+  border-color:#FF8C00;
+  
+ }
+
+
+.btnLogin{
+  margin-left: 80px;
+  background: #DAA520;
+  font-family: arial;
+  font-size: large;
+  color:#FFF;
+
+}
+
+h4{
+  text-align: center;
+  text-decoration: underline;
+  font-family: arial;
+  font-weight:bolder;
+}
+
+.campania{
+  margin-left: 8px;
+  margin-top: 10px;
+}
+
+.caja{
+    font-family: Estrangelo Edessa;
+    margin-left: 20px; 
+    padding-top: 20px;
+    width: 55%;
+}
+
+a{
+  text-decoration: none ;
+  color:#FFF;
+
+}
+
+a:hover{
+  color:#26B3E2;
+}
+
+h3{
+  font-family: arial;
+  font-size: x-large; 
+  margin-left: 5%;
+  
+}
+
+p{
+  font-size: 140%;
+  margin-left: 8%; 
+  margin-right: 15%;
+  text-align: center;
+}
+
+.nene{
+  width: 280px;
+  height: 50px;
+  font-family: Arial Rounded MT Bold;
+  font-size: large;
+  text-align: center;
+  float: right;
+  color: #000;
+  margin-top: 6%;
+  clear: right;
+  margin-right: 30px;
+}
+
+.dona{
+  border:solid;
+  width: 107%;
+  border-color:#000;
+  color: #26B3E2;
+}
+
+.voluntario{
+  margin-right: 60%;
+  float: right;
+  margin-top: 15%;
+  clear: right;
+  width:40%;
+
+}
+
+.linkedin{
+ 
+  float: right;
+  margin-top: 5%;
+  border:solid;
+  background:#0080FF;
+  clear: right;
+  width:250px;
+  height: 40px;
+  margin-right: 3%;
+  text-align: center;
+  padding-top: 2%;
+  font-family: arial;
+  font-size: x-large;
+
+}
+
+
+.texto{
+  border: solid;
+  border-color: #000;
+  width: 267%;
+  color:#26B3E2;
+}
+
+h2{
+  font-family: arial;
+
+}
+
+#footer { 
+  width:950px;
+  height:50px;
+  background-color: #939EA6;
+  margin-top:10px;
+  text-align: center;
+}
+
+.header{
+  width:950px;
+  height:150px;
+  background-color:#FFFFFF;
+}
+
+#form-usr{
+  padding-left: 50px;
+  margin-left: 180px;
+  margin-right: 350px;
+  padding-top: 80px;
+  border-color: #ff5487;
+  width: 500px;
+  height: 500px;
+  border-style: solid;
+  padding-right: 50px;
+  
+
+}

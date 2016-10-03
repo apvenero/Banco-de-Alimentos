@@ -1,0 +1,104 @@
+{% extends "headerConsulta.html.twig" %}
+	  {% block script %}
+    
+    <script src="./js/jquery.min.js"></script>
+        <script src="./js/highcharts/highcharts.js"></script>
+        <script src="./js/highcharts/modules/exporting.js"></script>
+    <script type="text/javascript">
+
+        $(function () {
+            $('#container').highcharts({
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Kilos de pedidos que fueron entregados'
+                },
+                subtitle: {
+                    text: ''
+                },
+                xAxis: {
+                
+                    categories: [
+                        {% for p in pedidos %}
+                            {{ p.numero}},
+                        {% endfor %}
+                    ],
+                            title: {
+                                text: 'Pedido #'
+                            },
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Kilos (kg)'
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                        '<td style="padding:0"><b>{point.y:.1f} kg</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    }
+                },
+                series: [{
+                    name: 'Cantidad kilos',
+                    data: [
+                        {% for a in arreglo %}
+                            {{ a[0]['totalKilos'] }},
+                        {% endfor %}
+                    ]
+
+                }]
+            });
+        });
+
+        </script>
+            
+{% endblock %}
+
+{% block contenido %}
+        {% if pedidos  %} 
+
+        <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+        <br>
+        <table class="tabla">         
+          <tr>
+              <th>Numero Pedidos</th>
+              <th>Kilos entregados</th> 
+          </tr> 
+
+          {% for a in arreglo %}
+          <tr>  
+              <td> {{a[0]["pedido_numero"]}}</td>    
+              <td> {{a[0]["totalKilos"] }}</td> 
+          </tr>
+          {% endfor %} 
+ 
+        </table>
+        <form class="formulari" method= "post" action="index.php?controller=EstadisticasController&amp;action=estadisticasA">
+                                
+          <input type="date" name="fechaInicial" value="{{fechaInicial}}"hidden>
+  
+          <input type="date" name="fechaFinal" value="{{fechaFinal}}" hidden>
+          <input name="boton2" id="boton" type="submit" value="Descargar Listado">
+ 
+        </form><br>
+        
+
+
+        {%else%}
+            <h2>NO HAY PEDIDOS ENTREGADOS ENTRE ESAS FECHAS </h2><br>
+        {%endif%}
+
+
+        <input type="button" value="Volver" onclick="window.history.go(-1)"> 
+
+{% endblock %}

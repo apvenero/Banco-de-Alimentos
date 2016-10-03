@@ -1,0 +1,41 @@
+{% extends "headerAdministrador.html.twig" %}
+
+
+{% block contenido %}
+<h3>Productos con vencimiento cercano</h3>
+{% if cantidadDeProductosAVencer %}
+  <div class="inicio"><h2> La cantidad de productos a vencerse es: {{cantidadDeProductosAVencer}} </h2></div> 
+{%else%}
+<h2> NO HAY PRODUCTOS A VENCERSE </h2>
+{%endif%}
+<br>
+<br>
+<h3>Pedidos a entregar hoy</h3>
+{%if pedidos %}
+
+
+
+<table class="tabla">         
+      <tr>
+        <th>ENTIDAD RECEPTORA</th>
+        <th>NUMERO PEDIDO</th>
+        <th>FECHA INGRESO</th>
+        <th>ESTADO</th>
+        <th>HORA ENTREGA</th>
+      </tr> 
+     {% for p in pedidos %}
+        <tr>                   
+          <td> {{ p.razon_social }} </td> 
+          <td> {{ p.numero }}  </td> 
+          <td> {{ p.fecha_ingreso }}  </td> 
+          <td> {{ p.descripcion }}  </td> 
+          <td> {{ p.hora }}  </td> 
+
+        </tr> 
+     {% endfor %}        
+</table>
+{%else%}
+<h2>NO HAY PEDIDOS PARA EL DIA DE HOY </h2>
+{%endif%}
+
+{% endblock %}

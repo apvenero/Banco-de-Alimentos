@@ -1,0 +1,46 @@
+{% extends "headerGestion.html.twig" %}
+
+
+{% block contenido %}
+<br>
+  {% if pedidos %}
+        <table class="tabla">         
+          <tr>
+              <th>NUMERO PEDIDO</th>
+              <th>RAZON SOCIAL</th>
+              <th>FECHA INGRESO</th>
+              <th>TURNO</th>
+              <th>ESTADO</th>
+              <th>CON ENVIO</th> 
+              <th>ALIMENTOS</th>
+              <th>OPERACIONES</th>
+
+          </tr> 
+
+          {% for pedido in pedidos %}
+          <tr>  
+              <td> {{pedido["numero"]}}</td>   
+              <td> {{pedido["razon_social"]}}</td>   
+              <td> {{pedido["fecha_ingreso"]}}</td> 
+              <td> {{pedido["fecha"]}} | {{pedido["hora"]}}hs</td> 
+              <td> {{pedido["descripcion"]}}</td> 
+              <td> {{pedido["con_envio"]}}</td> 
+              <td><a class="mas" href="index.php?controller=AdministradorPEController&amp;action=verAlimentos&amp;id={{ pedido.numero }}"> Ver</a></td>           
+              <td>
+            <a href="index.php?controller=AdministradorPEController&amp;action=modificarPedido&amp;id={{ pedido.numero }}"><img src="imagen/modificar.png" alt="Modificar"></a>
+            <a href="index.php?controller=AdministradorPEController&amp;action=baja&amp;id={{pedido.numero }}"><img src="imagen/eliminar.png" alt="Eliminar"></a>  
+
+          </td> 
+
+            </tr> 
+          {% endfor%}
+        </table><br>
+
+        {%else%}
+            <h2> No hay pedidos </h2><br>
+        {%endif%}        
+
+          <input id="boton" type="button" value="Cargar nuevo pedido" onclick="document.location.href='index.php?controller=AdministradorPEController&amp;action=cargar'">  
+
+{% endblock %}
+

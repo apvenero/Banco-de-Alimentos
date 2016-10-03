@@ -1,0 +1,34 @@
+{% extends "headerConsulta.html.twig" %}
+
+{% block contenido %}
+
+       <table class="tabla">         
+          <tr>
+            <th>C&oacute;digo</th>
+            <th>Descripci&oacute;n</th>
+            <th>Fecha de Vencimiento</th>
+            <th>Contenido</th>
+            <th>Peso</th> 
+            <th>Stock</th> 
+            <th>Reservado</th>
+ 
+          </tr> 
+          {% for dato in datos %}
+              <tr>  
+               {% set nro = dato["codigo"] %}
+              <td> {{dato["codigo"]}}</td>       
+              <td> {{dato["descripcion"]}} </td>
+              <td> {{dato["fecha_vencimiento"]}}</td> 
+              <td> {{dato["contenido"]}}</td> 
+              <td> {{dato["peso_unitario"]}}</td>  
+              <td> {{dato["stock"]}}</td>   
+              <td> {{dato["reservado"]}}</td>
+                </tr>
+          {% endfor%}
+	</table>
+         
+           
+        
+
+{% endblock %}
+

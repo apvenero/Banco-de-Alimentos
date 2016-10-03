@@ -1,0 +1,115 @@
+{% extends "headerAdministrador.html.twig" %}
+{% block script %}
+	<script src="./js/jquery.min.js"></script>
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&language=es"></script>
+
+    <script type="text/javascript">
+		
+		window.onload = function () {
+			var directionsDisplay = new google.maps.DirectionsRenderer();
+			var directionsService = new google.maps.DirectionsService();
+			var bankLat = $('#latitudBanco').val();
+			var bankLong = $('#longitudBanco').val();
+			var destinationLat = $('#latitud').val();
+			var destinationLong = $('#longitud').val();
+			
+			var request = {
+					origin: (new google.maps.LatLng(bankLat, bankLong)),
+					destination: (new google.maps.LatLng(destinationLat, destinationLong)),
+					travelMode: google.maps.DirectionsTravelMode["DRIVING"],
+					unitSystem: google.maps.DirectionsUnitSystem["METRIC"],
+					provideRouteAlternatives: true
+				};
+			
+			var mapOptions = {
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+			
+			var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+			
+			directionsService.route(request, function(response, status) {
+				if (status == google.maps.DirectionsStatus.OK) {
+					directionsDisplay.setMap(map);
+					directionsDisplay.setPanel($("#panel").get(0));
+					directionsDisplay.setDirections(response);
+				} else {
+					if (status == 'ZERO_RESULTS')
+					{
+						alert('No se pudo encontrar una ruta entre el origen y el destino.');
+					}
+					else if (status == 'UNKNOWN_ERROR')
+					{
+						alert('La petición no ha podido ser procesada debido a un error. Puede que funcione si lo intentas de nuevo.');
+					} 
+					else if (status == 'REQUEST_DENIED')
+					{
+						alert('La página no está autorizada a usar el servicio.');
+					} 
+					else if (status == 'OVER_QUERY_LIMIT')
+					{
+						alert('La página web ha superado el límite de peticiones en un corto periodo de tiempo.');
+					} 
+					else if (status == 'NOT_FOUND')
+					{
+						alert('Al menos el origen, el destino o uno de los puntos de ruta no pudo ser geocodificado.');
+					} 
+					else if (status == 'INVALID_REQUEST')
+					{
+						alert('La dirección de la petición proporcionada fue inválida.');					
+					} 
+					else
+					{
+						alert("Ha habido un error desconocido en su petición. Estado de la petición: \n\n"+status);
+					}					
+
+
+				}
+			});
+			
+		}
+		
+
+</script>
+{% endblock %}
+
+
+{% block contenido %}
+	<div>
+		<input id="latitudBanco" type="hidden" value="{{latitudBanco}}">
+		<input id="longitudBanco" type="hidden" value="{{longitudBanco}}">
+	
+		<input id="latitud" type="hidden" value="{{latitud}}" >
+		<input id="longitud" type="hidden" value="{{longitud}}" >
+
+		<div id="map_canvas" style="float:left; width:75%; height:400px"></div><br>
+		<div id="panel" style="float:right; overflow: auto; width:25%; height: 400px">
+	</div><br>
+
+	<div>
+	  <h3>Clima de la ciudad destino</h3><br>
+  		<table class="tabla">         
+          <tr>
+              <th>CIUDAD</th>
+              <th>TEMP. MAXIMA</th>
+              <th>TEMP. MINIMA</th>
+              <th>PRESION</th>
+              <th>HUMEDAD</th>
+              <th>ESTADO CIELO</th>
+              <th>DESCRIPCION</th>
+
+          </tr> 
+
+          <tr>  
+              <td> {{ciudad}}</td> 
+              <td> {{maxima}}</td> 
+              <td> {{minima}}</td> 
+              <td> {{presion}}</td> 
+              <td> {{humedad}}</td> 
+              <td> {{estado_cielo}}</td> 
+              <td> {{descripcion}}</td> 
+          </tr> 
+        </table><br>
+    </div>
+    <br>
+ 		<div> <input type="button" id="boton" value="Volver" onclick="document.location.href='index.php?controller=EnviosController&amp;action=verEnvio'"></div> 
+{% endblock %}

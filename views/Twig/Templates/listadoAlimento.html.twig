@@ -1,0 +1,34 @@
+{% extends "headerAdministrador.html.twig" %}
+
+{% block contenido %}
+
+    
+		<p><a class="mas" href='index.php?controller=abmAlimentos&amp;action=alta'>Alta de Alimento</a></p><br>
+
+        <table class="tabla">         
+          <tr>
+            <th>C&oacute;digo</th>
+            <th>Descripci&oacute;n</th>
+            
+            <th> </th>
+            <th>Opciones </th>
+            
+          </tr> 
+          {% for dato in datos %}
+            <tr>  
+             {% set nro = dato["codigo"] %}
+            <td> {{dato["codigo"]}}</td>       
+            <td> {{dato["descripcion"]}} </td>
+            <td>
+         	  <a class="mas" href="index.php?controller=abmAlimentos&amp;action=verListaDetalle&amp;codigo={{nro}}"> Ver m&aacute;s</a>
+             </td> 
+              <td><a href="index.php?controller=abmAlimentos&amp;=eliminar&amp;codigo={{nro}}&amp;id={{dato["id"]}}"><img src="imagen/eliminar.png" alt="Eliminar"> </a></td>           
+        
+          {% endfor%}
+
+             
+          </tr>
+     </table>
+          
+{% endblock %}
+

@@ -1,0 +1,74 @@
+{% extends "headerAdministrador.html.twig" %}
+
+
+{% block contenido %}
+<h3>Productos con vencimiento cercano</h3>
+{% if alimentos %}
+  <table class="tabla">         
+          <tr>
+              <th>C&oacute;digo</th>
+              <th>Descripcion</th>
+              <th>Fecha Vencimiento</th>
+              <th>Contenido</th> 
+              <th>Peso Unitario</th>
+              <th>Stock</th> 
+          </tr> 
+
+          {% for alimento in alimentos %}
+          <tr>  
+              <td> {{alimento["codigo"]}}</td>   
+              <td> {{alimento["descripcion"]}}</td>   
+              <td> {{alimento["fecha_vencimiento"]}}</td> 
+              <td> {{alimento["contenido"]}} {{alimento["unidad"]}}</td> 
+              <td> {{alimento["peso_unitario"]}}</td>
+              <td> {{alimento["stock"]}}</td>
+          </tr>
+          {%endfor%}
+             
+
+  </table>
+
+ 
+{%else%}
+<h2> NO HAY PRODUCTOS A VENCERSE </h2>
+{%endif%}
+<br>
+<br>
+<h3>Pedidos a entregar hoy</h3>
+
+{%if pedidos or vencidos  %}
+<table class="tabla">         
+      <tr>
+        <th>ENTIDAD RECEPTORA</th>
+        <th>NUMERO PEDIDO</th>
+        <th>FECHA ENTREGA</th>
+        <th>ESTADO</th>
+        <th>HORA ENTREGA</th>
+      </tr> 
+     {% for p in pedidos %}
+        <tr>                   
+          <td> {{ p.razon_social }} </td> 
+          <td> {{ p.numero }}  </td> 
+          <td> {{ p.fecha }}  </td> 
+          <td> {{ p.descripcion }}  </td> 
+          <td> {{ p.hora }}  </td> 
+
+        </tr> 
+     {% endfor %} 
+
+       {% for v in vencidos %}
+        <tr>                   
+          <td class="color"> {{ v.razon_social }} </td> 
+          <td class="color"> {{ v.numero }}  </td> 
+          <td class="color"> {{ v.fecha }}  </td> 
+          <td class="color"> {{ v.descripcion }}  </td> 
+          <td class="color"> {{ v.hora }}  </td> 
+
+        </tr> 
+     {% endfor %}        
+</table>
+{%else%}
+<h2>NO HAY PEDIDOS PARA EL DIA DE HOY </h2>
+{%endif%}
+
+{% endblock %}

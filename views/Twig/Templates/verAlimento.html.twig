@@ -1,0 +1,60 @@
+{% extends "headerAdministrador.html.twig" %}
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="./css/encuestas.css">
+{% endblock %}
+{% block contenido %}
+
+<br>
+	<table class="tabla">					
+	
+	<tr> 									 
+	  	<th>Fecha de Vencimiento</th> 	
+		<td>{{alimento[0]['fecha_vencimiento']}}</td>					  						  	 
+	</tr> 
+	<tr> 									 
+	 	<th>Contenido</th> 
+		<td>{{alimento[0]['contenido']}} {{alimento[0]['unidad']}}</td>						  						  	 
+	</tr>
+	<tr> 									 
+		<th>Peso por paquete</th> 				
+			<td>{{alimento[0]['peso_unitario']}}</td>	  						  	 
+	</tr>
+	<tr> 									 
+	 	<th> Stock</th> 
+		<td>{{alimento[0]['stock']}}</td>					  						  	 
+	</tr>
+	<tr> 									 
+		<th>Reservado</th> 		
+		<td>{{alimento[0]['reservado']}}</td>			  						  	 
+	</tr>
+					
+
+</table>
+	
+<br>
+<br>
+<br>
+<table class="tabla">
+   <tr>
+	<th> Razon Social </th>
+	<th> Cantidad </th>
+   </tr>
+
+   {%for d in don %}
+   <tr>
+	   <td> {{d["razon_social"]}}</td>
+	   <td> {{d["cantidad"]}} </td>
+
+	{% endfor%}
+	</tr>  
+   
+</table>
+<p><a class="mas" href="index.php?controller=abmAlimentos&amp;action=agregarDonante&amp;codigo={{alimento[0]['alimento_codigo']}}&amp;id={{alimento[0]['id']}}">Agregar Donante</a></p><br>
+
+
+<br>
+  <input type="button" value="Volver" onclick="document.location.href='index.php?controller=abmAlimentos&amp;action=verListaDetalle&amp;codigo={{alimento[0]['alimento_codigo']}}'"> 
+				
+				
+{% endblock%}

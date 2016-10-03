@@ -1,0 +1,33 @@
+{% extends "headerAdministrador.html.twig" %}
+
+{% block contenido %}
+
+    
+        <p><a class="mas" href='index.php?controller=abmUsuarios&amp;action=alta'>Alta de Usuarios</a></p><br>
+
+        <table class="tabla">         
+          <tr>
+            <th>Usuario</th>
+            <th>Rol</th>
+            
+           
+            <th>Opciones </th>
+            
+          </tr> 
+          {% for usu in usus %}
+            <tr>  
+             {% set nro = usu["idUsuario"] %}
+            <td> {{usu["usuario"]}}</td>       
+            <td> {{usu["nombre"]}} </td>
+            
+            <td>
+            <a href="index.php?controller=abmUsuarios&amp;action=modificar&amp;id={{usu["idUsuario"] }}"><img src="imagen/modificar.png" alt="Modificar"></a>
+            <a href="index.php?controller=abmUsuarios&amp;action=eliminar&amp;id={{usu["idUsuario"]}}"><img src="imagen/eliminar.png" alt="Eliminar"> </a></td>           
+        
+          {% endfor%}
+
+             
+          </tr>
+     </table>
+          
+{% endblock %}

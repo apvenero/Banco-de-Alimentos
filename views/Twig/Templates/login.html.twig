@@ -1,0 +1,44 @@
+<!doctype html>
+
+	<head>		
+		<meta charset="utf-8">	
+		
+		<link rel="stylesheet" type="text/css" href="./css/loginPrincipal.css">
+		<link rel="stylesheet" type="text/css" href="./css/reset.css">
+		
+		<title>Login</title>
+	</head>		
+	<body>
+			
+			<p id="textoheader">Banco alimentario de La Plata</p>
+			<br>
+			<br>
+			<h3>&Aacute;rea Usuarios Registrados</h3>
+
+			<br>	
+			{% if error %}
+						<div id="errorMessage">
+							{{ error }}
+						</div>
+			{% endif %}
+
+			<form class="box login" action="index.php" method="POST">			
+				<fieldset class="boxBody">
+					<label>Usuario:</label>			
+					<input id="usuario" name="usuario" type ="text" required autofocus>		
+					<label>Contraseña:</label>				
+					<input id="pass" name="pass" type="password" required> <br>	
+
+				</fieldset>
+				<footer>
+					<input id="boton" type="submit" class="btnLogin" value="Ingresar">	
+
+				</footer>	
+			</form>
+
+
+
+	</body>
+
+</html>
+		

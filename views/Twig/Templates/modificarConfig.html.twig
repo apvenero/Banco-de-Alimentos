@@ -1,0 +1,32 @@
+{% extends "headerAdministrador.html.twig" %}
+
+{% block contenido %}
+
+    <form class="formulario" name="formModificarConfig" action="index.php?controller=AdministradorConfigController&amp;action=guardarModificado&amp;id={{id}}" method="post">
+        <fieldset>
+            <legend>Modificacion Configuraci&oacute;n</legend>
+            
+            <label>Clave:</label> <input type="text" name="clave" id="clave" value= "{{configuracion[0]['clave']}}" readonly required> <br> 
+                <span class="error">{{ errores.clave }}</span> <br>
+            <label>Valor:</label><input type="text" name="valor" value="{{configuracion[0]['valor']}}"/>
+            <span class="error">{{ errores.valor }}</span> <br><br>
+            
+            
+            <br>
+            <br>
+                <input type="submit" value="Modificar">
+                <input type="reset"  value="Cancelar" id="limpiar" onclick="document.location.href= 'index.php?controller=AdministradorConfigController&action=verConfig'" >
+                <input type="hidden" name="token" value="{{token}}" >
+        </fieldset>
+                
+                            
+    </form>
+    <br>
+    <br>
+    <br>
+
+    <input type="button" value="Volver" onclick="document.location.href='index.php?controller=AdministradorConfigController&amp;action=verConfig'"> 
+                
+{% endblock %}
+                            
+

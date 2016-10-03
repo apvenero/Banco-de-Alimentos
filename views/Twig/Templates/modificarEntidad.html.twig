@@ -1,0 +1,56 @@
+{% extends "headerAdministrador.html.twig" %}
+
+
+{% block contenido %}
+    {{msj}}
+            <form id="form-usr" name="formModificarEntidad" method= "post" action="index.php?controller=AdministradorERController&amp;action=guardarModificacion&amp;id={{entidad[0].id}}">
+        
+                <fieldset>
+                <legend>Datos Entidad Receptora </legend><br>
+                            
+                    <label>Razon Social:</label>
+                    <input type="text" name="razon_social" id="razon_social" value=" {{ entidad[0].razon_social }}" required> <br>
+                        
+                    <label>Tel&eacute;fono:</label> 
+                    <input type="text" name="telefono" id="telefono" value=" {{ entidad[0].telefono }}" required> <br>
+                                
+                    <label>Domicilio:</label> 
+                    <input type="text" name="domicilio" id="domicilio" value=" {{ entidad[0].domicilio }}" required> <br>
+                                
+                    <label> Servicio Prestado:</label>
+                    <select name="servicio_prestado_id" id="servicio_prestado_id">
+                        {% for servicio in servicios %}
+                            <option value="{{servicio.id}}">{{servicio.descripcionServicio}}</option>
+                        {% endfor %}
+                    </select> <br>  
+                
+                
+                    Necesidad:
+                    <select name="necesidad_entidad_id" id="necesidad_entidad_id">
+                        <option value="1">M&aacute;xima</option>
+                        <option value="2">Mediana</option>
+                        <option value="3">M&iacute;nima</option>
+                    </select> <br>  
+                    
+                    Estado:
+                    <select name="estado_entidad_id" id="estado_entidad_id">
+                        <option value="1">Alta</option>
+                        <option value="2">En tr&aacute;mite</option>
+                        <option value="3">Suspendida</option>
+                        <option value="4">Baja</option>
+                    </select> <br>  
+                    <label>Latitud:</label> 
+                    <input type="text" name="latitud" id="latitud" value=" {{ entidad[0].latitud }}" required> <br>
+                    <label>Longitud:</label> 
+                    <input type="text" name="longitud" id="longitud" value=" {{ entidad[0].longitud }}" required> <br>
+                    <input type="hidden" name="token" value="{{token}}" >
+                    
+                     <input type="submit" value="Actualizar Informaci&oacute;n" onclick="">
+          
+                    <input type="button"  value="Cancelar" onclick="window.history.go(-1)">
+                    </fieldset>
+
+
+            </form>
+
+{% endblock %}

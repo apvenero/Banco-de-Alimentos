@@ -1,0 +1,96 @@
+{% extends "headerConsulta.html.twig" %}
+	{% block script %}
+			
+	<script src="./js/jquery.min.js"></script>
+	<script src="./js/highcharts/highcharts.js"></script>
+	<script src="./js/highcharts/modules/exporting.js"></script>
+
+	<script type="text/javascript">
+
+		$(document).ready(function() {
+			$('#container').highcharts({
+		        chart: {
+		            plotBackgroundColor: null,
+		            plotBorderWidth: 1,//null,
+		            plotShadow: false
+		        },
+		        title: {
+		            text: 'Kilos de alimento que fueron entregados a cada ER'
+		        },
+		        tooltip: {
+		            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+		        },
+		        plotOptions: {
+		            pie: {
+		                allowPointSelect: true,
+		                cursor: 'pointer',
+		                dataLabels: {
+		                    enabled: true,
+		                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+		                    style: {
+		                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+		                    }
+		                }
+		            }
+		        },
+	            series: [{
+	                type: 'pie',
+	                name: 'Browser share',
+	                data: [{% for p in pedidos %}
+	                		['{{p["descripcion"]}} {{p["contenido"]}}' , {{p["kgs"]}}],
+	                		{% endfor%}
+	                		]
+	            }]
+	        });
+
+	        /*
+	        $.getJSON("data.php", function(json) {
+				options.series[0].data = json;
+	        	chart = new Highcharts.Chart(options);
+	        });
+	        */
+	        
+	        
+      	}); 
+
+		</script>
+{% endblock %}
+
+{% block contenido %}
+		{% if (pedidos or arreglo) %}
+
+		<div id="container" style="min-width: 210px; height: 400px; margin: 0 auto"></div>
+		
+		<br>
+		<table class="tabla">         
+          <tr>
+              <th>Descripcion</th>
+              <th>Contenido</th> 
+              <th>Total</th>
+          </tr> 
+
+          {% for p in pedidos %}
+          <tr>  
+              <td> {{p["descripcion"]}}</td>    
+              <td> {{p["contenido"]}}</td> 
+              <td> {{p["kgs"]}}</td>
+          </tr>
+          {% endfor %}   
+ 
+		</table>
+		<br>
+		<form class="formulari" method= "post" action="index.php?controller=EstadisticasController&amp;action=verGraficoTorta">
+                                
+          <input type="date" name="fechaInicial" value="{{fechaInicial}}" hidden>
+          <input type="date" name="fechaFinal" value="{{fechaFinal}}" hidden>
+          <input type="text" name="entidad_receptora_id" value="{{entidad_receptora_id}}" hidden>
+         
+          <input name="boton2" id="boton" type="submit" value="Descargar Listado">
+ 
+        </form><br>
+		{%else%}
+			<h2>NO HAY PEDIDOS REALIZADOS POR LA ER ENTRE ESAS FECHAS </h2><br>
+		{%endif%}       
+        <input type="button" value="Volver" onclick="window.history.go(-1)"> 
+
+{% endblock %}

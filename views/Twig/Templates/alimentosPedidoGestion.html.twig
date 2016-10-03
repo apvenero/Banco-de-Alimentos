@@ -1,0 +1,28 @@
+{% extends "headerGestion.html.twig" %}
+
+
+{% block contenido %}
+
+
+        <table class="tabla">         
+          <tr>
+              <th>Descripci&oacute;n</th>
+              <th>Contendio</th>
+              <th>Cantidad</th>
+
+          </tr> 
+
+          {% for alimento in alimentos %}
+          <tr>  
+              <td> {{alimento["descripcion"]}}</td>   
+              <td> {{alimento["contenido"]}}{{alimento["unidad"]}}</td> 
+              <td> {{alimento["cantidad"]}}</td>   
+          </tr> 
+          {% endfor%}
+        </table><br>
+
+        <input type="button" value="Volver" onclick="document.location.href='index.php?controller=AdministradorPEController&amp;action=verTodos'"> 
+
+        
+{% endblock %}
+

@@ -1,0 +1,45 @@
+{% extends "headerAdministrador.html.twig" %}
+
+
+{% block contenido %}
+
+     <table class="tabla">         
+          <tr>
+            <th>Fecha de Vencimiento</th>
+            <th>Contenido</th>
+            <th>Peso</th> 
+            <th>Stock</th> 
+            <th>Reservado</th>
+            
+            <th> </th>
+            <th>Opciones</th>
+            
+          </tr> 
+          {% for dato in datos %}
+          <tr>  
+             {% set nro = dato["alimento_codigo"] %}
+           
+            <td> {{dato["fecha_vencimiento"]}}</td> 
+            <td> {{dato["contenido"]}} {{dato["unidad"]}}</td> 
+            <td> {{dato["peso_unitario"]}}</td>  
+            <td> {{dato["stock"]}}</td>   
+            <td> {{dato["reservado"]}}</td>
+            <td><a class="mas" href="index.php?controller=abmAlimentos&amp;action=verDetalle&amp;codigo={{nro}}&amp;id={{dato["id"]}}">Ver m&aacute;s</a>
+          </td>
+          <td>
+            <a href="index.php?controller=abmAlimentos&amp;action=modificar&amp;codigo={{nro}}&amp;id={{dato["id"]}}"><img src="imagen/modificar.png" alt="Modificar"></a>
+            <a href="index.php?controller=abmAlimentos&amp;action=eliminarDetalle&amp;codigo={{nro}}&amp;id={{dato["id"]}}"><img src="imagen/eliminar.png" alt="Eliminar"></a>  
+          </td> 
+        </tr> 
+       
+          {% endfor%}
+
+     </table>
+     	<p><a class="mas" href='index.php?controller=abmAlimentos&amp;action=altaDetalle&amp;codigo={{codigo}}'>Nuevo Detalle</a></p><br>
+     
+
+     <br>
+     <input type="button" value="Volver" onclick="document.location.href='index.php?controller=abmAlimentos&amp;action=listar'">  
+
+{% endblock %}
+

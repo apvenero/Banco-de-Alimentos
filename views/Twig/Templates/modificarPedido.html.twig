@@ -1,0 +1,102 @@
+{% extends "headerAdministrador.html.twig" %}
+
+
+{% block contenido %}
+
+{{ msj }}
+<br>
+  <section>
+    <form action="index.php?controller=AdministradorPEController&amp;action=guardarModificado&amp;id={{pedido[0]['numero']}}" method="post">
+    
+      <fieldset>
+        <legend>Datos del Pedido</legend><br/>
+       
+
+        <label>Pedido por:</label> 
+        <input type="text" name="entidad_receptora" value="{{pedido[0]['razon_social']}} - {{pedido[0]['domicilio']}}" readonly><br><br>
+         <input type="text" name="entidad_receptra_id" value="{{pedido[0]['entidad_receptora_id']}}" hidden>
+
+        <h3>ALIMENTOS DEL PEDIDO</h3><br>
+        {% if alimentos %}
+
+        <table class="tabla">         
+          <tr>
+              <th>C&oacute;digo</th>
+              <th>Descripcion</th>
+              <th>Fecha Vencimiento</th>
+              <th>Contenido</th> 
+              <th>Peso Unitario</th>
+              <th>Cantidad</th>
+              <th>Eliminar</th>
+          </tr> 
+
+          {% for a in alimentos %}
+          <tr>  
+              <td> {{a["alimento_codigo"]}}</td>   
+              <td> {{a["descripcion"]}}</td>   
+              <td> {{a["fecha_vencimiento"]}}</td> 
+              <td> {{a["contenido"]}} {{alimento["unidad"]}}</td> 
+              <td> {{a["peso_unitario"]}}</td>
+ 
+              <td> {{ a["cantidad"]}}</td>  
+              <td><input type="checkbox" id="check-box" name="check_list[]" value="{{a["detalle_alimento_id"]}}"> </td>
+           
+            </tr> 
+          {% endfor%}
+        </table><br>
+        {%else%}
+            <p>No hay alimentos cargados en el pedido </p>
+        {% endif%}
+       <h3>AGREGAR ALIMENTOS</h3><br>
+        <table class="tabla">         
+          <tr>
+              <th>C&oacute;digo</th>
+              <th>Descripcion</th>
+              <th>Fecha Vencimiento</th>
+              <th>Contenido</th> 
+              <th>Peso Unitario</th>
+              <th>Stock</th> 
+              <th>Cantidad</th>
+              <th>Agregar</th>
+          </tr> 
+
+          {% for alimento in alimentosAgregar %}
+          <tr>  
+              <td> {{alimento["codigo"]}}</td>   
+              <td> {{alimento["descripcion"]}}</td>   
+              <td> {{alimento["fecha_vencimiento"]}}</td> 
+              <td> {{alimento["contenido"]}} {{alimento["unidad"]}}</td> 
+              <td> {{alimento["peso_unitario"]}}</td>
+              <td> {{alimento["stock"]}}</td>  
+ 
+              <td> <input type="number" value="0" min="0" max="{{alimento["stock"]}}" name="cantidad_{{alimento["id"]}}"> </td>  
+              <td><input type="checkbox" id="check-box" name="check_listA[]" value="{{alimento["id"]}}"> </td>
+           
+            </tr> 
+          {% endfor%}
+        </table><br>
+ 
+
+        <h3>ESTABLECER ENTREGA </h3><br>
+        <input type="text" name="turno_entrega_id" value="{{pedido[0]['turno_entrega_id']}}" hidden>
+
+        <label>Fecha:</label><input type="date" name="fecha" value="{{pedido[0]['fecha']}}"><br/><br/>
+
+        <label>Hora:<label><input type="time" name="hora" value="{{pedido[0]['hora']}}"><br/><br>
+
+
+
+        <label>Con envio:</label>
+          <select name="con_envio" id="con_envio">
+            <option value="SI"> SI </option>
+            <option value="NO"> NO </option>
+          </select><br/>
+       <br>
+       <input id="boton" type="submit" value="Actualizar informaci&oacute;n">  
+      
+      </fieldset>
+    </form>
+          
+    </section>
+{% endblock %}
+

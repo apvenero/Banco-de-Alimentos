@@ -1,0 +1,62 @@
+{% extends "headerGestion.html.twig" %}
+
+{% block contenido %}
+{% if mensaje %}
+            <div id="mensaje">
+              {{ mensaje }}
+            </div>
+      {% endif %}
+
+  <section>
+    <form class="formu" method= "post" name="alta" onsubmit="function " action= "index.php?controller=AdministradorEDController&amp;action=guardarEntregaD">
+    
+      <fieldset>
+        <legend>Datos de la Entrega</legend><br/>
+       
+         <label>Pedido por:</label> 
+        <select name="entidad_id" >
+              {% for entidad in entidades %}
+              <option value="{{entidad.id}}">{{entidad.razon_social}} - {{entidad.domicilio}}</option>
+              {% endfor %}
+         </select><br><br>
+ 
+
+        <h3>AGREGAR ALIMENTOS</h3>
+        <table class="tabla">         
+          <tr>
+              <th>C&oacute;digo</th>
+              <th>Descripcion</th>
+              <th>Fecha Vencimiento</th>
+              <th>Contenido</th> 
+              <th>Peso Unitario</th>
+              <th>Stock</th> 
+              <th>Cantidad</th>
+              <th>Agregar</th>
+          </tr> 
+
+          {% for alimento in alimentos %}
+          <tr>  
+               {% set nro = alimento["alimento_codigo"] %}
+              <td> {{alimento["codigo"]}}</td>   
+              <td> {{alimento["descripcion"]}}</td>   
+              <td> {{alimento["fecha_vencimiento"]}}</td> 
+              <td> {{alimento["contenido"]}} {{alimento["unidad"]}}</td> 
+              <td> {{alimento["peso_unitario"]}}</td>
+              <td> {{alimento["stock"]}}</td>
+             
+ 
+              <td> <input type="number" value="0" min="0" max="{{alimento["stock"]}}" name="cantidad_{{alimento["id"]}}"> </td>  
+              <td><input type="checkbox" id="check-box" name="check_list[]" value="{{alimento["id"]}}"> </td>
+            </tr> 
+          {% endfor%}
+        </table><br>
+       
+        </label>
+       <br>
+       <input type="submit" value="Entregar">  
+      
+      </fieldset>
+    </form>
+          
+    </section>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "headerAdministrador.html.twig" %}
+
+
+{% block contenido %}
+
+
+        <table class="tabla">         
+          <tr>
+              <th>N&uacute;mero Pedido</th>
+              <th>Kilos de alimentos entregados</th>
+
+          </tr> 
+
+          {% for pedido in pedidos %}
+          <tr>  
+              <td> {{pedido["numero"]}}</td> 
+               {% for a in arreglo %}
+                <td> {{a["totalKilos"]}}</td> 
+               {% endfor%}
+           </tr> 
+          {% endfor%}
+        </table><br>
+
+        
+{% endblock %}
+
+

@@ -1,0 +1,25 @@
+{% extends "layout.html.twig" %}
+
+
+{% block menu %}
+	   
+  <nav>
+
+        <ul>
+          <li><a title="opcion 1" href="index.php?controller=AlertasController&amp;action=listado">Home</a></li>
+          <li><a title="opcion 2" href="index.php?controller=abmUsuarios&amp;action=listarUsuarios">Usuarios</a></li>
+          <li><a title="opcion 3" href="index.php?controller=AdministradorDOController&amp;action=informacion">Donantes</a></li>
+          <li><a title="opcion 4" href="index.php?controller=AdministradorERController&amp;action=informacion">Entidades Receptoras</a></li>
+          <li><a title="opcion 5" href="index.php?controller=abmAlimentos&amp;action=listar">Alimentos</a></li>
+          <li><a title="opcion 6" href="index.php?controller=TurnosEntregaController&amp;action=listar">Turnos de entrega</a></li>
+          <li><a title="opcion 7" href="index.php?controller=AdministradorSPController&amp;action=listar"> Servicios Prestados</a></li>
+          <li><a title="opcion 8" href="index.php?controller=AdministradorPEController&amp;action=cargar">Confeccion de Pedidos</a></li>
+          <li> <a title = "opcion9" href="index.php?controller=AdministradorEDController&amp;action=realizarEntregaD">Entrega Directa </a> </li> 
+          <li><a title="opcion 10" href="index.php?controller=EnviosController&amp;action=verEnvio">Env&iacute;os</a></li>
+          <li><a title="opcion 11" href="index.php?controller=EstadisticasController&amp;action=impresiones">Impresiones</a></li>
+          <li><a title="opcion 12" href="index.php?controller=AdministradorConfigController&amp;action=verConfig">Configuraci&oacute;n</a></li>
+      </ul>
+  </nav>
+  
+
+{% endblock %}

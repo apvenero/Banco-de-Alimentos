@@ -1,0 +1,69 @@
+{% extends "headerAdministrador.html.twig" %}
+
+{% block contenido %}	
+	<br>		
+
+  <h3>Kilos de pedidos que fueron entregados </h3><br>
+	<form class="formulari" method= "post" action="index.php?controller=EstadisticasController&amp;action=estadisticasA">
+    
+                            
+          <label>Fecha Inicial:</label>
+          <input type="date" name="fechaInicial" required>
+          <span class="error">{{ errores.fechaInicial }}</span>
+  
+          <label>Fecha Final:</label>
+          <input type="date" name="fechaFinal" required>
+          <span class="error">{{ errores.fechaFinal }}</span><br/>
+          <br/>
+          
+          <input name="boton1" id="boton" type="submit" value="Ver Grafico">
+  </form><br>
+	 
+  <h3>Kilos de alimento que fueron entregados a cada ER</h3><br>
+  <form class="formulari" method= "post" action="index.php?controller=EstadisticasController&amp;action=verGraficoTorta">
+    
+                            
+          <label>Fecha Inicial:</label>
+          <input type="date" name="fechaInicial" required>
+          <span class="error">{{ errores.fechaInicial }}</span>
+  
+          <label>Fecha Final:</label>
+          <input type="date" name="fechaFinal" required>
+          <span class="error">{{ errores.fechaFinal }}</span>
+      
+
+          <label>Entidad Receptora:</label> 
+          <select name="entidad_receptora_id" >
+              {% for entidad in entidades %}
+              <option value="{{entidad.id}}">{{entidad.razon_social}}</option>
+              {% endfor %}
+         </select><br><br>
+          
+          <input name="boton1" id="boton" type="submit" value="Ver Grafico">
+
+    </form><br>
+
+<h3>Alimentos vencidos sin entregar (agrupados por descripción)</h3><br>
+
+        <table class="tabla">         
+          <tr>
+              <th>C&oacute;digo</th>
+              <th>Descripci&oacute;n</th>
+              <th>Fecha de vencimiento</th>
+              <th>Paquetes Vencidos</th>
+          </tr> 
+
+          {% for alimento in alimentos %}
+          <tr>  
+              <td> {{alimento["codigo"]}}</td>   
+              <td> {{alimento["descripcion"]}}</td> 
+              <td> {{alimento["fecha_vencimiento"]}}</td> 
+              <td> {{alimento["stock"]}}</td> 
+          </tr> 
+          {% endfor%}
+        </table><br>
+
+          <input id="boton" type="button" onclick="document.location.href='index.php?controller=EstadisticasController&amp;action=vencidos'" value="Descargar Listado">
+
+        
+{% endblock %}

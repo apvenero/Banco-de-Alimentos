@@ -1,0 +1,27 @@
+{% extends "headerGestion.html.twig" %}
+
+
+{% block contenido %}
+
+
+        <table class="tabla">         
+          <tr>
+              <th>Descripci&oacute;n</th>
+              <th>Contendio</th>
+              <th>Cantidad</th>
+
+          </tr> 
+
+          {% for envio in envios %}
+          <tr>  
+              <td> {{envio["descripcion"]}}</td>   
+              <td> {{envio["contenido"]}}{{envio["unidad"]}}</td> 
+              <td> {{envio["cantidad"]}}</td>   
+          </tr> 
+          {% endfor%}
+        </table><br>
+
+        <input type="button" value="Volver" onclick="document.location.href='index.php?controller=EnviosController&amp;action=verEnvio'"> 
+
+        
+{% endblock %}

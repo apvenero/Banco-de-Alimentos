@@ -1,0 +1,33 @@
+{% extends "headerAdministrador.html.twig" %}
+{% block stylesheets %}
+	<link rel="stylesheet" href="./css/style.css">
+	
+	<script type="text/javascript" src="https://maps.google.com/maps/api/js?v=3.5&sensor=false&callback=init"></script>
+	
+	<script type="text/javascript" src="./js/mapa1.js"></script>
+{% endblock %}
+
+{% block contenido %}
+<br>
+<b>
+
+{%if envios %}
+
+<form  action="index.php?controller=EnviosController&amp;action=buscar" method="post">
+ <input type="date" name="fecha" value="{{dia}}">
+<input type="submit" value="Buscar Envios">
+</form>
+
+<div id="mapa" style="height:500px;width:500px;">
+    </div>    
+
+
+
+{%else%}
+{{msj}} <br><br>
+<form  action="index.php?controller=EnviosController&amp;action=buscar" method="post">
+ <input type="date" name="fecha">
+<input type="submit" value="Buscar Envios">
+</form>
+{%endif%}
+{% endblock %}

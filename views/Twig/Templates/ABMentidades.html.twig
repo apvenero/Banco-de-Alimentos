@@ -1,0 +1,34 @@
+{% extends "headerAdministrador.html.twig" %}
+
+
+{% block contenido %}
+
+
+<p><a class="mas" href='index.php?controller=AdministradorERController&amp;action=alta'>Nueva Entidad receptora </a></p>
+<br/>
+
+<table class="tabla">         
+      <tr>
+        <th>RAZON SOCIAL</th>
+        <th>TELEFONO</th>
+        <th>DOMICILIO</th>
+        <th></th>
+        <th>OPCIONES</th>
+      </tr> 
+     {% for ent in entidades %}
+        <tr>                   
+          <td> {{ ent.razon_social }} </td> 
+          <td> {{ ent.telefono }}  </td> 
+          <td> {{ ent.domicilio }}  </td> 
+          <td><a class="mas" href="index.php?controller=AdministradorERController&amp;action=ver&amp;id={{ ent.id }}"> Ver m&aacute;s</a>
+          </td>
+          <td>
+            <a href="index.php?controller=AdministradorERController&amp;action=modificar&amp;id={{ ent.id }}"><img src="imagen/modificar.png" alt="Modificar"></a>
+            <a href="index.php?controller=AdministradorERController&amp;action=eliminar&amp;id={{ ent.id }}"><img src="imagen/eliminar.png" alt="Eliminar"></a>  
+          </td> 
+        </tr> 
+     {% endfor %}        
+</table>
+
+
+{% endblock %}

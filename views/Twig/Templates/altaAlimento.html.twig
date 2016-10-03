@@ -1,0 +1,39 @@
+{% extends "headerAdministrador.html.twig" %}
+ 
+
+{% block contenido %}
+
+   {{msj}}
+    <form id="form-alta" name="formAltaAlimento" action="index.php?controller=abmAlimentos&amp;action=guardar" method="post">
+        <fieldset>
+            <legend>Carga de Alimento</legend>
+            <label>C&oacute;digo: </label><input type="text" name="codigo" id="codigo" autofocus required> 
+                <span class="error">{{ errores.codigo }}</span> <br>
+            <label>Descripcion:</label> <input type="text" name="descripcion" id="descripcion" required>
+                <span class="error">{{ errores.nombre }}</span> <br>
+            <label>Fecha de Vencimiento:</label><input type="date" name="fecha_vencimiento"><br>
+            <label>Contenido (cantidad x peso):</label> <input type="text" name="contenido[0]" size="5"> x <input type="text" name="contenido[1]" size="5">
+            <select name="unidad"> 
+                <option value="kg">Kg</option>
+                <option value="g">Gs</option>
+                <option value="lt">Lts</option>
+            </select> <br>
+            <label>Peso por paquete: </label><input type="text" name="peso_unitario"><br>
+            Stock:<input type="number" name="stock"><br>
+            <label>Reservado:</label> <input type="number" name="reservado"> <br>
+            <input type="hidden" name="token" value="{{token}}" >
+            <br>
+            <br>
+                <input type="submit" value="Dar de alta">
+                <input type="reset"  value="Limpiar" id="limpiar" onclick="document.location.href='index.php?controller=abmAlimento&amp;action=alta'">
+        </fieldset>
+                            
+    </form>
+    <br>
+    <br>
+    <br>
+
+    <input type="button" value="Volver" onclick="document.location.href='index.php?controller=abmAlimentos&amp;action=listar'"> 
+                
+{% endblock %}
+                            	

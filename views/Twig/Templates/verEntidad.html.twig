@@ -1,0 +1,45 @@
+{% extends "headerAdministrador.html.twig" %}
+
+{% block contenido %}
+
+    <table class="tabla">                   
+
+    <tr>
+        <th>RAZON SOCIAL:</th>  
+        <td>{{entidad[0]['razon_social']}}</td>                         
+    </tr>                       
+    <tr>                                     
+        <th>TELEFONO:</th> 
+        <td>{{entidad[0]['telefono']}}</td>                                                  
+    </tr> 
+    <tr>                                     
+        <th>DOMICILIO:</th>     
+        <td>{{entidad[0]['domicilio']}}</td>                                                 
+    </tr> 
+    <tr>                                     
+        <th>SERVICIO:</th>      
+        <td>{{entidad[0]['descripcionServicio']}}</td>                                       
+    </tr>
+    <tr>                                     
+        <th>NECESIDAD:</th>                 
+            <td>{{entidad[0]['descripcionNecesidad']}}</td>                              
+    </tr>
+    <tr>                                     
+        <th>ESTADO:</th> 
+        <td>{{entidad[0]['descripcionEstado']}}</td>                                                     
+    </tr>
+    <tr>                                     
+        <th>LATITUD:</th> 
+        <td>{{entidad[0]['latitud']}}</td>                                                   
+    </tr>
+    <tr>                                     
+        <th>LONGIITUD:</th> 
+        <td>{{entidad[0]['longitud']}}</td>                                                  
+    </tr>
+            
+</table><br/>
+                
+<input type="button" value="Volver" onclick="document.location.href='index.php?controller=AdministradorERController&amp;action=informacion'">   
+                
+                
+{% endblock%}

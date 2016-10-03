@@ -1,0 +1,21 @@
+{% extends "headerAdministrador.html.twig" %}
+
+{% block contenido %}
+
+    <form class=""  action="index.php?controller=abmAlimentos&amp;action=donar&amp;codigo={{codigo}}&amp;id={{id}}" method="post">
+		<fieldset>
+			<label>Donante:</label> 
+					<select name="donante_id" >
+						{% for donante in donantes %}
+						<option value="{{donante.id}}">{{donante.razon_social}}</option>
+						{% endfor %}
+					</select>
+			Cantidad: <input type="number" name="cantidad"> <br> <br>
+			<input type="submit" value="Hacer DONACION">
+		</fieldset>
+		
+</form>
+<br>
+<br>
+<input type="button" value="Volver" onclick="document.location.href='index.php?controller=abmAlimentos&amp;action=verDetalle&amp;codigo={{codigo}}&amp;id={{id}}'">
+{% endblock %}

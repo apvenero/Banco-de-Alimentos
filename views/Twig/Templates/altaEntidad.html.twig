@@ -1,0 +1,66 @@
+{% extends "headerAdministrador.html.twig" %}
+
+
+{% block contenido %}
+
+
+                
+        <section>
+            <form class="formulario" name="formAltaEntidad" method= "post" name="modULab" onsubmit="function " action= "index.php?controller=AdministradorERController&amp;action=guardar">
+        
+            <fieldset>
+                <legend>Datos de la entidad receptora </legend><br/>
+                                            
+                    <label for="razon_social">Razon Social:</label>
+                    <input type="text" name="razon_social" id="nombre" required><br/>
+                    <span class="error">{{ errores.razon_social }}</span><br/>
+    
+                    <label for="telefono">Tel&eacute;fono:</label> 
+                    <input type="text" name="telefono" id="telefono" required><br/>
+                    <span class="error">{{ errores.telefono }}</span> <br>
+
+                    <label for="domicilio">Domicilio:</label> 
+                    <input type="text" name="domicilio" id="domicilio" required><br/>
+                    <span class="error">{{ errores.domicilio }}</span><br/>
+            
+                        
+                    <label> Servicio Prestado:</label>
+                    <select name="servicio_prestado_id" id="servicio_prestado_id">
+                        {% for servicio in servicios %}
+                            <option value="{{servicio.id}}">{{servicio.descripcionServicio}}</option>
+                        {% endfor %}
+                    </select><br/>  
+                
+                    <label for="necesidad_entidad_id"> Necesidad:</label>
+                    <select name="necesidad_entidad_id" id="necesidad_entidad_id">
+                        <option value="1">M&aacute;xima</option>
+                        <option value="2">Mediana</option>
+                        <option value="3">M&iacute;nima</option>
+                    </select><br/>  
+                            
+                    <label for="estado_entidad_id"> Estado:</label>
+                    <select name="estado_entidad_id" id="estado_entidad_id">
+                        <option value="1">Alta</option>
+                        <option value="2">En tr&aacute;mite</option>
+                        <option value="3">Suspendida</option>
+                        <option value="4">Baja</option>
+                    </select><br/>  
+                    <label for="latitud">Latitud (en decimal):</label> 
+                    <input type="text" name="latitud" id="latitud" required><br/>
+                    <span class="error"></span>
+                
+                    <label for="longitud">Longitud (en decimal):</label> 
+                    <input type="text" name="longitud" id="longitud" required><br/>
+                    <span class="error"></span><br/>    
+                    
+                    <input type="hidden" name="token" value="" >        
+                    <br/>
+                    
+                    <input type="submit" value="Guardar" onclick="">
+                   <input type="button"  value="Cancelar" onclick="window.history.go(-1)">  
+                </fieldset>
+            </form>
+    
+        </section>
+
+{% endblock %}

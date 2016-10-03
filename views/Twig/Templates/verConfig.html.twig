@@ -1,0 +1,52 @@
+{% extends "headerAdministrador.html.twig" %}
+
+
+{% block contenido %}
+    
+        
+
+        <table class="tabla">         
+          <tr>
+            <th> ID CLAVE PUBLICA </th>
+            <td> {{idClavePublica}}</td>
+           <td>
+            <a href="index.php?controller=AdministradorConfigController&amp;action=modificarConfig&amp;id={{idCPu}}"><img src="imagen/modificar.png" alt="Modificar"></a>
+            </td>
+          </tr> 
+         
+           <tr>
+            <th> ID CLAVE PRIVADA </th>
+            <td> {{idClavePrivada}}</td>
+           <td>
+            <a href="index.php?controller=AdministradorConfigController&amp;action=modificarConfig&amp;id={{idCPr}}"><img src="imagen/modificar.png" alt="Modificar"></a>
+            </td>
+          </tr> 
+
+           <tr>
+            <th> CANTIDAD </th>
+            <td> {{cantidad}}</td>
+           <td>
+            <a href="index.php?controller=AdministradorConfigController&amp;action=modificarConfig&amp;id={{idCant}}"><img src="imagen/modificar.png" alt="Modificar"></a>
+            </td>
+          </tr> 
+
+           <tr>
+            <th> LONGITUD </th>
+            <td> {{longitud}}</td>
+           <td>
+            <a href="index.php?controller=AdministradorConfigController&amp;action=modificarConfig&amp;id={{idLon}}"><img src="imagen/modificar.png" alt="Modificar"></a>
+            </td>
+          </tr> 
+
+          
+           <tr>
+            <th> LATITUD </th>
+            <td> {{latitud}}</td>
+           <td>
+            <a href="index.php?controller=AdministradorConfigController&amp;action=modificarConfig&amp;id={{idLa}}"><img src="imagen/modificar.png" alt="Modificar"></a>
+            </td>
+          </tr> 
+     </table>
+          
+{% endblock %}
+

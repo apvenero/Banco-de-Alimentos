@@ -1,0 +1,47 @@
+{% extends "headerAdministrador.html.twig" %}
+
+
+
+{% block contenido %}
+
+				
+			<form class="formulario" method= "post" action="index.php?controller=TurnosEntregaController&amp;action=guardarModificacion&amp;id={{ turno[0]['id']}}">
+		
+			<fieldset>
+				<legend>Datos del Turno </legend><br/>
+					
+					
+					<label>Fecha:</label>
+					<input type="date" name="fecha" id="fecha" value="{{ turno[0]['fecha'] }}" required><br>
+						
+					<label>Hora:</label> 
+					<input type="time" name="hora" id="hora" value="{{ turno[0]['hora'] }}" required> <br>
+	
+					<label>Numero Pedido:</label> 
+					<input type="text" name="numero" id="numero" value="{{ turno[0]['numero'] }}" readonly> <br>
+				
+					<label> Estado Pedido:</label>
+					<select name="estado_pedido_id" id="estado_pedido_id">
+						{% for estado in estados %}
+							<option value="{{estado.id}}">{{estado.descripcion}}</option>
+						{% endfor %}
+					</select> <br>
+					
+					<br>
+								
+    			    <input type="submit" id="boton" value="Actualizar Informaci&oacute;n" onclick="">
+          			<input id="boton" type="button"  value="Cancelar" onclick="document.location.href='index.php?controller=TurnosEntregaController&amp;action=listar'">  
+
+
+
+        	</fieldset>
+			
+				
+					
+
+					
+			</form>
+
+
+
+{% endblock %}

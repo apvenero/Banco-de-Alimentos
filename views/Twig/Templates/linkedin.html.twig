@@ -1,0 +1,39 @@
+{% extends "layoutt.html.twig"%}
+{% block contenido %}
+<br>
+<br>
+<table class="tabla" >
+	<tr>
+		<th>NOMBRE</th>	
+		<td>{{datos.firstName}}</td>							
+	</tr>
+
+	<tr>
+		<th>APELLIDO</th>	
+		<td>{{datos.lastName}}</td>							
+	</tr>
+
+	<tr>
+		<th>ESTUDIOS</th>	
+		<td>{{datos.headline}}</td>							
+	</tr>
+	
+	<tr>
+		<th>EMAIL</th>	
+		<td>{{datos.emailAddress}}</td>							
+	</tr>
+</table>
+<br>
+<br>
+
+
+
+
+
+
+
+<input type="button" value="Volver" onclick="document.location.href='frontend.php'">	
+
+
+
+{% endblock %}
